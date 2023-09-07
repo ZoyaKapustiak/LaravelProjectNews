@@ -5,6 +5,6 @@ namespace App\Http\Controllers;
 class WelcomeController
 {
     public function index() {
-        return view('welcome');
+        return view('welcome', ['img' => fake()->imageUrl()]);
     }
 }
