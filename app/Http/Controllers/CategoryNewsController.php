@@ -9,7 +9,7 @@ class CategoryNewsController
     public function index()
     {
         return view('categoryNews.index', [
-            'categoryNews' => $this->getCategoryNews(),
+            'categoryNewsList' => $this->getCategoryNews(),
         ]);
     }
 

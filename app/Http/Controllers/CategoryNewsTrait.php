@@ -15,16 +15,16 @@ trait CategoryNewsTrait
                 $categoryNews[$i] =
                     [
                         "id" => $i,
-                        "title" => fake()->title(),
-                        "description" => fake()->text(15),
+                        "title" => fake()->jobTitle(),
+                        "description" => fake()->text(100),
                     ];
             }
             return $categoryNews;
         }
         return [
             'id' => $category,
-            'title' => fake()->title,
-            'description' => fake()->text(15),
+            'title' => fake()->jobTitle(),
+            'description' => fake()->text(100),
         ];
     }
 }

@@ -15,8 +15,10 @@ trait NewsTrait {
                 $news[$i] = [
                     'id' => $i,
                     'title' => fake()->jobTitle(),
+                    'img' => fake()->imageUrl(),
                     'description' => fake()->text(100),
                     'author' => fake()->userName(),
+                    'status' => 'ACTIVE',
                     'created_at' => now()->format('d-m-Y H:i'),
                 ];
             }
@@ -25,9 +27,11 @@ trait NewsTrait {
         return [
             'id' => $id,
             'title' => fake()->jobTitle(),
+            'img' => fake()->imageUrl(),
             'description' => fake()->text(100),
             'author' => fake()->userName(),
+            'status' => 'ACTIVE',
             'created_at' => now()->format('d-m-Y H:i'),
-        ];;
+        ];
     }
 }
