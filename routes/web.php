@@ -19,9 +19,13 @@ use App\Http\Controllers\WelcomeController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index'])
-    ->name('welcome');
+Route::get('/', function () {
+    return view('welcome');
+});
 
+//Route::get('/', static function () {
+//    return view('welcome');
+//});
 
 Route::get('/about-project', function () {
     return view('aboutproject');
@@ -41,6 +45,7 @@ Route::group(['prefix' => 'guest'], static function() {
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', AdminController::class)->name('index');
     Route::resource('categories', AdminCategoryController::class);
+    Route::resource('categories/{id)/show', AdminCategoryController::class);
     Route::resource('news', AdminNewsController::class);
 });
 
