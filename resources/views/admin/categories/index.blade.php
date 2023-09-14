@@ -15,19 +15,15 @@
             <tr>
                 <th scope="col">#ID</th>
                 <th scope="col">Заголовок</th>
-                <th scope="col">Статус</th>
-                <th scope="col">Автор</th>
-                <th scope="col">Дата создания</th>
-                <th scope="col">Действия</th>
+                <th scope="col">Описание</th>
             </tr>
             </thead>
             <tbody>
             @forelse($categoriesNewsList as $category)
-
                 <tr>
-                    <td>{{$category['id']}}</td>
-                    <td>{{$category['title']}}</td>
-                    <td>{{$category['description']}}</td>
+                    <td>{{$category->id}}</td>
+                    <td>{{$category->title}}</td>
+                    <td>{{$category->description}}</td>
                     <td><a href="">Редактировать</a><a href="" style="color: red">Удалить</a> </td>
                 </tr>
             @empty
