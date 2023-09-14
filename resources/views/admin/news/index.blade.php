@@ -24,11 +24,11 @@
             <tbody>
             @forelse($newsList as $news)
             <tr>
-                <td>{{$news['id']}}</td>
-                <td>{{$news['title']}}</td>
-                <td>{{$news['status']}}</td>
-                <td>{{$news['author']}}</td>
-                <td>{{$news['created_at']}}</td>
+                <td>{{$news->id}}</td>
+                <td>{{$news->title}}</td>
+                <td>{{$news->status}}</td>
+                <td>{{$news->author}}</td>
+                <td>{{$news->created_at}}</td>
                 <td><a href="">Редактировать</a><a href="" style="color: red">Удалить</a> </td>
             </tr>
             @empty
