@@ -19,7 +19,7 @@ use App\Http\Controllers\WelcomeController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', WelcomeController::class)->name('home');
 
 //Route::get('/', static function () {
 //    return view('welcome');
@@ -31,19 +31,18 @@ Route::get('/about-project', function () {
 
     Route::get('/news', [NewsController::class, 'index'])
         ->name('news');
-    Route::get('news/{id}/show', [NewsController::class,'show'])
+    Route::get('news/{news}', [NewsController::class,'show'])
         ->where('id', '\d+')->name('news.show');
 
     Route::get('/categoryNews', [CategoryNewsController::class, 'index'])
         ->name('categoryNews');
-    Route::get('/categoryNews/{id}/show', [CategoryNewsController::class, 'show'])
+    Route::get('/categoryNews/{category}', [CategoryNewsController::class, 'show'])
         ->where('id', '\d+')->name('categoryNews.show');
 
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', AdminController::class)->name('index');
     Route::resource('categories', AdminCategoryController::class);
-    Route::resource('categories/{id)/show', AdminCategoryController::class);
     Route::resource('news', AdminNewsController::class);
 });
 

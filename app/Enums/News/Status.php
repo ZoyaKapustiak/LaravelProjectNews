@@ -4,9 +4,9 @@ namespace App\Enums\News;
 
 enum Status: string
 {
-    case DRAFT = 'DRAFT';
-    case ACTIVE = 'ACTIVE';
-    case BLOCKED = 'BLOCKED';
+    case DRAFT = 'draft';
+    case ACTIVE = 'active';
+    case BLOCKED = 'blocked';
 
     public static function getEnums(): array
     {
