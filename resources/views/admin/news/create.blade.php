@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 @section('content')
+
+    @include('inc.message')
     <form method="post" enctype="multipart/form-data" action="{{ route('admin.news.store') }}">
         @csrf
         <div class="mb-3">
@@ -22,7 +24,7 @@
         </select>
         <select class="form-select mb-3" name="category_id" aria-label="statusNews">
             @foreach($categories as $category)
-            <option selected>{{$category->title}}</option>
+            <option value="{{$category->id}}" @selected($category->id == old('category_id')) >{{$category->title}}</option>
             @endforeach
         </select>
         <input type="file" name="img" placeholder="Загрузить изображение" id="image">

@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+    @include('inc.message')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Список категорий</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
@@ -24,7 +25,7 @@
                     <td>{{$category->id}}</td>
                     <td>{{$category->title}}</td>
                     <td>{{$category->description}}</td>
-                    <td><a href="">Редактировать</a><a href="" style="color: red">Удалить</a> </td>
+                    <td><a href="{{route('admin.categories.edit', $category)}}">Редактировать</a><a href="" style="color: red">Удалить</a> </td>
                 </tr>
             @empty
                 <tr>
@@ -35,5 +36,6 @@
             @endforelse
             </tbody>
         </table>
+        {{$categoriesNewsList->links()}}
     </div>
 @endsection
