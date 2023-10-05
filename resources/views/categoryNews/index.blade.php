@@ -1,14 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('title') Категория новостей @parent @stop
 @section('content')
-    <section class="py-0 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
+    <section class="py-3 text-center container">
+        <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Категории новостей</h1>
-            </div>
         </div>
-    </section>
-    <div class="album py-0 bg-body-tertiary">
+
+    <div class="album py-4 bg-body-tertiary">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @forelse($categoryNewsList as $category)
@@ -31,4 +29,5 @@
             {{$categoryNewsList->links()}}
         </div>
     </div>
+    </section>
 @endsection

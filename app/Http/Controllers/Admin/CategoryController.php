@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function index(): View
     {
-        $newsCategories = Category::query()->paginate(10);
+        $newsCategories = Category::query()->with('news')->paginate(10);
 
         return \view('admin.categories.index', [
             'categoriesNewsList' => $newsCategories,
@@ -39,9 +39,9 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateRequest $request): RedirectResponse //??
+    public function store(CreateRequest $request): RedirectResponse
     {
-        $request->flash();
+
         $data = $request->only('title', 'description');
 
         $category = new Category($data);

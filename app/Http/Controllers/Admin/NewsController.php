@@ -32,7 +32,6 @@ class NewsController extends Controller
             ->orderByDesc('id')
             ->paginate(6);
         $newsList->withQueryString();
-
         return \view('admin.news.index', ['newsList' => $newsList]);
     }
 
@@ -51,7 +50,6 @@ class NewsController extends Controller
      */
     public function store(CreateRequest $request)
     {
-//        $request->flash();
         $data = $request->only(['category_id', 'title', 'author', 'img', 'status', 'description']);
 
         $name = null;
@@ -110,7 +108,6 @@ class NewsController extends Controller
     public function edit(News $news): View
     {
         $categories = Category::all();
-
         return \view('admin.news.edit', [
             'categories' => $categories,
             'news' => $news
