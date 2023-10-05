@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title') Категория новости: {{ $categoryNews}} @parent @stop
 
