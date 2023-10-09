@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\DefineLoginEvent;
+use App\Listeners\LastLoginUpdateListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,7 +20,16 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+                // ... other providers
+            \SocialiteProviders\VKontakte\VKontakteExtendSocialite::class.'@handle',
+            \SocialiteProviders\GitHub\GitHubExtendSocialite::class.'@handle'
+        ],
+        DefineLoginEvent::class => [
+            LastLoginUpdateListener::class
+        ]
     ];
+
 
     /**
      * Register any events for your application.
