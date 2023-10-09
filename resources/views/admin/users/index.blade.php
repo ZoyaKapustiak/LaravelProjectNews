@@ -24,6 +24,7 @@
                 <th scope="col">Имя</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Дата регистрации</th>
+                <th scope="col">Роль</th>
             </tr>
             </thead>
             <tbody>
@@ -34,21 +35,18 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->created_at}}</td>
                     <td>
-                        <a href="{{route('admin.isadmin', $user)}}">
-                            <button type="submit">@if($user->is_admin)Разжаловать @else Назначить@endif</button>
-                        </a>
+                        @if($user->is_admin === true)
+                            <a href="{{ route('admin.isadmin', $user) }}"
+                               type="button" class="btn btn-danger">Разжаловать</a>
+                        @else
+                            <a href="{{ route('admin.isadmin', $user) }}"
+                               type="button" class="btn btn-success">Назначить</a>
+                        @endif
                     </td>
-{{--                    <td><form method="post" action="{{route('admin.isadmin')}}">--}}
-{{--                            @csrf--}}
-{{--                            @method('PUT')--}}
-{{--                            <input name="id_user" type="hidden" value="{{$user->id}}">--}}
-{{--                            <button type="submit"> Назначить админом</button>--}}
-{{--                        </form> </td>--}}
-                    <td><a href="{{route('admin.users.edit', $user)}}">Редактировать</a>
+                    <td><a href="{{route('admin.users.edit', $user)}}" class="btn">Редактировать</a>
                         <form method="post" enctype="multipart/form-data" action="{{route('admin.users.destroy', $user)}}">
                             @csrf
                             @method('DELETE')
-
                             <button type="submit">Удалить</button>
                         </form>
                     </td>
