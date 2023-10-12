@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\ParserController;
+use App\Http\Controllers\Admin\ResourcesController;
 use App\Http\Controllers\Admin\UsersController as AdminUsersController;
 use App\Http\Controllers\SocialProviderController;
 use Illuminate\Support\Facades\Auth;
@@ -49,24 +50,29 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(
     Route::get('/users', [AdminUsersController::class, 'index'])->name('users');
     Route::resource('users', AdminUsersController::class);
     Route::get('/users/isadmin/{user}', [AdminUsersController::class, 'isadmin'])->name('isadmin');
-//    Route::get('/users/toggleAdmin/{user}', [AdminUsersController::class, 'toggleAdmin'])->name('toggleAdmin');
+    Route::resource('resources', ResourcesController::class);
+    Route::delete('/resources/delete/{resources}', [ResourcesController::class, 'delete'])->name('resources.delete');
 });
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/vkontakte/redirect', [SocialProviderController::class, 'redirect'])
+    Route::get('/{driver}/redirect', [SocialProviderController::class, 'redirect'])
+        ->where('driver', '\w+')
         ->name('social-providers.redirect');
 
-    Route::get('/vkontakte/callback', [SocialProviderController::class, 'callback'])
+    Route::get('/{driver}/callback', [SocialProviderController::class, 'callback'])
+        ->where('driver', '\w+')
         ->name('social-providers.callback');
 
-    Route::get('/github/redirect', [SocialProviderController::class, 'redirectGit'])
-        ->name('git.social-providers.redirect');
-
-    Route::get('/github/callback', [SocialProviderController::class, 'callbackGit'])
-        ->name('git.social-providers.callback');
+//    Route::get('/github/redirect', [SocialProviderController::class, 'redirectGit'])
+//        ->name('git.social-providers.redirect');
+//
+//    Route::get('/github/callback', [SocialProviderController::class, 'callbackGit'])
+//        ->name('git.social-providers.callback');
 });
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('image-upload', [AdminNewsController::class, 'storeImage'])->name('image.upload');
